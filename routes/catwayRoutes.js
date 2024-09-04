@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const catwayController = require('../controllers/catwayController');
+const CatwayController = require('../controllers/CatwayController');
 
-// CRUD pour les Catways
-router.get('/', catwayController.getAllCatways);
-router.get('/:id', catwayController.getCatwayById);
-router.post('/', catwayController.createCatway);
-router.put('/:id', catwayController.updateCatway);
-router.patch('/:id', catwayController.partialUpdateCatway);
-router.delete('/:id', catwayController.deleteCatway);
+// Routes CRUD pour les catways
+router.post('/create', CatwayController.createCatway);
+router.post('/update', CatwayController.updateCatway);
+router.post('/delete', CatwayController.deleteCatway);
+router.get('/details', CatwayController.getCatwayDetails);
+router.get('/', CatwayController.getAllCatways);
 
 module.exports = router;

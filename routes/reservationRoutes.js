@@ -1,11 +1,11 @@
 const express = require('express');
-const router = express.Router({ mergeParams: true });
-const reservationController = require('../controllers/reservationController');
+const router = express.Router();
+const ReservationController = require('../controllers/ReservationController');
 
-// CRUD pour les réservations
-router.get('/', reservationController.getAllReservations);
-router.get('/:idReservation', reservationController.getReservationById);
-router.post('/', reservationController.createReservation);
-router.delete('/:idReservation', reservationController.deleteReservation);
+// Routes CRUD pour les réservations
+router.post('/create', ReservationController.createReservation);
+router.post('/delete', ReservationController.deleteReservation);
+router.get('/details', ReservationController.getReservationDetails);
+router.get('/', ReservationController.getAllReservations);
 
 module.exports = router;
