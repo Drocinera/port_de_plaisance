@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const CatwayController = require('../controllers/catwayController');
+const CatwayController = require('..controllers/catwayController.js');
 
 // Routes CRUD pour les catways
 router.get('/', CatwayController.getAllCatways);
