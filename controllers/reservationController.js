@@ -19,6 +19,15 @@ exports.getReservationById = async (req, res) => {
   }
 };
 
+exports.getReservationDetails = async (req, res) => {
+  try {
+    const reservationDetails = await Reservation.find(); 
+    res.json(reservationDetails);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
 exports.createReservation = async (req, res) => {
   try {
     const newReservation = new Reservation({ ...req.body, catwayNumber: req.params.id });
