@@ -8,7 +8,7 @@ exports.signup = async (req, res) => {
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ message: 'Email déjà utilisé' });
 
-    const newUser = new User({ name, email, password });
+    const newUser = new User({ name, email, password: hashedPassword });
     await newUser.save();
 
     res.status(201).json({ message: 'Utilisateur créé' });
