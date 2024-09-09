@@ -4,11 +4,11 @@ const bcrypt = require('bcryptjs');
 
 exports.signup = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
-    const existingUser = await User.findOne({ username });
+    const { name, email, password } = req.body;
+    const existingUser = await User.findOne({ name });
     if (existingUser) return res.status(400).json({ message: 'Nom d\'utilisateur déjà utilisé' });
 
-    const newUser = new User({ username, email, password: hashedPassword });
+    const newUser = new User({ name, email, password: hashedPassword });
     await newUser.save();
 
     res.status(201).json({ message: 'Utilisateur créé' });
@@ -19,9 +19,9 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { name, email, password } = req.body;
 
-    const user = await User.findOne({ username });
+    const user = await User.findOne({ name });
     if (!user) return res.status(400).json({ message: 'Identifiants incorrects' });
 
     const isMatch = await bcrypt.compare(password, user.password);
