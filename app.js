@@ -29,7 +29,6 @@ const reservationRoutes = require('./routes/reservationRoutes');
 app.get('/', authMiddleware, (req, res) => {
   res.render('dashboard', {
     title: 'Port de Plaisance',
-    description: 'Bienvenue sur l\'application de gestion de port de plaisance. Une fois connecter, elle vous permettra de faire des réservation, de vérifier vos Catway et vos clients.',
     apiDocumentationLink: '/documentation'
   });
 });
@@ -45,7 +44,8 @@ app.get('/documentation', (req, res) => {
 // Route pour le tableau de bord (protégée)
 app.get('/login', (req, res) => {
   res.render('index', {
-    title: 'Page d\'authentification'
+    title: 'Page d\'authentification',
+    description: 'Bienvenue sur l\'application de gestion de port de plaisance. Une fois connecter, elle vous permettra de faire des réservation, de vérifier vos Catway et vos clients.',
   });
 });
 
