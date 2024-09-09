@@ -21,7 +21,7 @@ exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
 
-    const user = await User.findOne({ name });
+    const user = await User.findOne({ username });
     if (!user) return res.status(400).json({ message: 'Identifiants incorrects' });
 
     const isMatch = await bcrypt.compare(password, user.password);
