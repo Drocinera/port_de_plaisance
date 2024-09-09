@@ -5,8 +5,8 @@ const bcrypt = require('bcryptjs');
 exports.signup = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    const existingUser = await User.findOne({ email });
-    if (existingUser) return res.status(400).json({ message: 'Email déjà utilisé' });
+    const existingUser = await User.findOne({ name });
+    if (existingUser) return res.status(400).json({ message: 'Nom déjà utilisé' });
 
     const newUser = new User({ name, email, password: hashedPassword });
     await newUser.save();
@@ -29,8 +29,10 @@ exports.login = async (req, res) => {
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.json({ token });
-  } catch (err) {
+    res.cookie('token', token, { httpOnly: true })
+  
+    res.redirect('/dashboard');
+    } catch (err) {
     res.status(500).json({ error: err.message });
-  }
-};
+    }
+  };

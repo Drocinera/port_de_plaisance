@@ -10,6 +10,9 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 // Configurer EJS comme moteur de template
 app.set('view engine', 'ejs');
 
@@ -26,7 +29,7 @@ const reservationRoutes = require('./routes/reservationRoutes');
 app.get('/', (req, res) => {
   res.render('index', {
     title: 'Port de Plaisance',
-    description: 'Bienvenue sur l\'application de gestion de port de plaisance. Une fois connecter, elle vous permettra de faire des réservation de vérifier vos Catway et vos clients.',
+    description: 'Bienvenue sur l\'application de gestion de port de plaisance. Une fois connecter, elle vous permettra de faire des réservation, de vérifier vos Catway et vos clients.',
     apiDocumentationLink: '/documentation'
   });
 });
