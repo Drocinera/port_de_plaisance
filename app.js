@@ -26,8 +26,8 @@ const catwayRoutes = require('./routes/catwayRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
 
 // Page d'accueil
-app.get('/', (req, res) => {
-  res.render('index', {
+app.get('/', authMiddleware, (req, res) => {
+  res.render('dashboard', {
     title: 'Port de Plaisance',
     description: 'Bienvenue sur l\'application de gestion de port de plaisance. Une fois connecter, elle vous permettra de faire des réservation, de vérifier vos Catway et vos clients.',
     apiDocumentationLink: '/documentation'
@@ -39,13 +39,6 @@ app.get('/documentation', (req, res) => {
   res.render('documentation', {
     title: 'Documentation de l\'API',
     apiDetails: 'Voici la documentation de l\'API...'
-  });
-});
-
-// Route pour le tableau de bord (protégée)
-app.get('/dashboard', authMiddleware, (req, res) => {
-  res.render('dashboard', {
-    title: 'Tableau de Bord'
   });
 });
 
