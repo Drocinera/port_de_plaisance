@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 exports.signup = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { username, password } = req.body;
     const existingUser = await User.findOne({ name });
     if (existingUser) return res.status(400).json({ message: 'Nom déjà utilisé' });
 
@@ -19,7 +19,7 @@ exports.signup = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    const { name, password } = req.body;
+    const { username, password } = req.body;
 
     const user = await User.findOne({ name });
     if (!user) return res.status(400).json({ message: 'Identifiants incorrects' });
