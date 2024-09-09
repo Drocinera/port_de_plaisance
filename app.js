@@ -53,6 +53,9 @@ app.get('/login', (req, res) => {
 app.use('/catways', authMiddleware, catwayRoutes);
 app.use('/reservations', authMiddleware, reservationRoutes);
 
+const authRoutes = require('./routes/authRoutes'); 
+app.use(authRoutes);
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Serveur lancé sur le port ${PORT}`);
