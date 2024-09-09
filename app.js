@@ -42,6 +42,13 @@ app.get('/documentation', (req, res) => {
   });
 });
 
+// Route pour le tableau de bord (protégée)
+app.get('/login', (req, res) => {
+  res.render('index', {
+    title: 'Page d\'authentification'
+  });
+});
+
 // Routes protégées pour Catways et Réservations
 app.use('/catways', authMiddleware, catwayRoutes);
 app.use('/reservations', authMiddleware, reservationRoutes);
