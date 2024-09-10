@@ -38,7 +38,7 @@ exports.login = async (req, res) => {
 
     res.cookie('token', token, { httpOnly: true });
 
-    res.redirect('/dashboard');
+    res.redirect('/');
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

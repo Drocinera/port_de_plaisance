@@ -25,7 +25,7 @@ mongoose.connect(process.env.MONGO_URI)
 const catwayRoutes = require('./routes/catwayRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
 
-// Page d'accueil
+// Page d'accueil protégé
 app.get('/', authMiddleware, (req, res) => {
   res.render('dashboard', {
     title: 'Port de Plaisance',
@@ -41,7 +41,6 @@ app.get('/documentation', (req, res) => {
   });
 });
 
-// Route pour le tableau de bord (protégée)
 app.get('/login', (req, res) => {
   res.render('index', {
     title: 'Page d\'authentification',
