@@ -55,6 +55,9 @@ app.use('/reservations', authMiddleware, reservationRoutes);
 const authRoutes = require('./routes/authRoutes'); 
 app.use(authRoutes);
 
+const userRoutes = require('./routes/userRoutes');
+app.use('/users', userRoutes);
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Serveur lancé sur le port ${PORT}`);
