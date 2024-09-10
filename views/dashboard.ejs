@@ -10,13 +10,14 @@
     
     <h2>Gestion des utilisateurs</h2>
     <form action="/users/create" method="POST">
-        <input type="text" name="username" placeholder="Nom d'utilisateur" required>
+        <input type="text" name="name" placeholder="Nom d'utilisateur" required>
+        <input type="email" name="email" placeholder="Email" required>
         <input type="password" name="password" placeholder="Mot de passe" required>
         <button type="submit">Créer un utilisateur</button>
     </form>
     <form action="/users/update" method="POST">
         <input type="text" name="userId" placeholder="ID de l'utilisateur" required>
-        <input type="text" name="newUsername" placeholder="Nouveau nom d'utilisateur">
+        <input type="text" name="newName" placeholder="Nouveau nom d'utilisateur">
         <input type="password" name="newPassword" placeholder="Nouveau mot de passe">
         <button type="submit">Modifier un utilisateur</button>
     </form>
