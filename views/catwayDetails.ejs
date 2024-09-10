@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails du Catway</title>
+</head>
+<body>
+    <h1>Détails du Catway</h1>
+    
+    <% if (catway) { %>
+        <p><strong>ID :</strong> <%= catway._id %></p>
+        <p><strong>Numéro :</strong> <%= catway.catwayNumber %></p>
+        <p><strong>Type :</strong> <%= catway.type %></p>
+        <p><strong>État :</strong> <%= catway.catwayState %></p>
+    <% } else { %>
+        <p>Catway non trouvé.</p>
+    <% } %>
+
+    <a href="/catways">Retour à la liste des Catways</a>
+</body>
+</html>
