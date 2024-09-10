@@ -33,7 +33,6 @@ exports.login = async (req, res) => {
     const isMatch = await bcrypt.compare(req.body.password, user.password);
     console.log(req.body.password);
     console.log(user.password);
-    console.log(hashedPassword);
 
     if (!isMatch) return res.status(400).json({ message: 'Mot de passe incorrect' });
 
