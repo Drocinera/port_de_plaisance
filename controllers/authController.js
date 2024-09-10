@@ -10,6 +10,7 @@ exports.signup = async (req, res) => {
     if (existingUser) return res.status(400).json({ message: 'Nom d\'utilisateur déjà utilisé' });
 
     const hashedPassword = await bcrypt.hash(password, 10);
+    console.log('Mot de passe haché:', hashedPassword);
 
     const newUser = new User({ name, email, password: hashedPassword });
     await newUser.save();
@@ -31,7 +32,11 @@ exports.login = async (req, res) => {
     if (!user) return res.status(400).json({ message: 'Identifiants incorrects' });
 
     const isMatch = await bcrypt.compare(password, user.password);
+    console.log('Mot de passe en clair:', password);  // Mot de passe entré par l'utilisateur
+console.log('Mot de passe haché depuis la DB:', user.password);  // Mot de passe haché de la DB
+
     if (!isMatch) return res.status(400).json({ message: 'Mot de passe incorrect' });
+    console.log('Les mots de passe ne correspondent pas');
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
