@@ -18,27 +18,27 @@ exports.signup = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
+
+  res.redirect('/login');
+  
 };
 
 exports.login = async (req, res) => {
   try {
-    const { name, email, password } = req.body;
+    const { name, password } = req.body;
 
     const user = await User.findOne({ name });
     if (!user) return res.status(400).json({ message: 'Identifiants incorrects' });
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) return res.status(400).json({ message: 'Mot de passe incorrects' });
-
-    const Email = await email.findOne({ email });
-    if (!Email) return res.status(400).json({ message: 'Email incorrect' });
+    if (!isMatch) return res.status(400).json({ message: 'Mot de passe incorrect' });
 
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.cookie('token', token, { httpOnly: true })
-  
+    res.cookie('token', token, { httpOnly: true });
+
     res.redirect('/dashboard');
-    } catch (err) {
+  } catch (err) {
     res.status(500).json({ error: err.message });
-    }
-  };
+  }
+};
