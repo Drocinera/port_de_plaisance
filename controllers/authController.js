@@ -30,10 +30,15 @@ exports.login = async (req, res) => {
     const user = await User.findOne({ name });
     if (!user) return res.status(400).json({ message: 'Identifiants incorrects' });
 
+    /*const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) return res.status(400).json({ message: 'Mot de passe incorrect' });*/
     const isMatch = await bcrypt.compare(password, user.password);
-
-    if (!isMatch) return res.status(400).json({ message: 'Mot de passe incorrect' });
-
+    console.log(`isMatch: ${isMatch}`);
+    if (!isMatch) {
+        console.log('Mot de passe incorrect');
+        return res.status(400).json({ message: 'Mot de passe incorrect' });
+    }
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.cookie('token', token, { httpOnly: true });
