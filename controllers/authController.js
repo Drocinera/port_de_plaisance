@@ -30,7 +30,7 @@ exports.login = async (req, res) => {
     const user = await User.findOne({ name });
     if (!user) return res.status(400).json({ message: 'Identifiants incorrects' });
 
-    const isMatch = await bcrypt.compare(request.body.password, user.password);
+    const isMatch = await bcrypt.compare(req.body.password, user.password);
 
     if (!isMatch) return res.status(400).json({ message: 'Mot de passe incorrect' });
 
