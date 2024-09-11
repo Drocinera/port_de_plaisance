@@ -33,10 +33,11 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-    const deletedUser = await User.findByIdAndDelete(req.params.id);
-    if (!deletedUser) return res.status(404).json({ message: "Utilisateur non trouvé" });
-    res.json({ message: "Utilisateur supprimé" });
+      const userId = req.params.id;
+      const deletedUser = await User.findByIdAndDelete(userId);
+      if (!deletedUser) return res.status(404).json({ message: "Utilisateur non trouvé" });
+      res.json({ message: "Utilisateur supprimé" });
   } catch (err) {
-    res.status(500).json({ error: err.message });
+      res.status(500).json({ error: err.message });
   }
 };
