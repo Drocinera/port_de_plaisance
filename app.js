@@ -10,6 +10,9 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+const methodOverride = require('method-override');
+app.use(methodOverride('_method'));
+
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
