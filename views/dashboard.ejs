@@ -21,7 +21,7 @@
         <input type="password" name="newPassword" placeholder="Nouveau mot de passe">
         <button type="submit">Modifier un utilisateur</button>
     </form>
-    <form action="/users/delete/ID" method="POST" onsubmit="event.preventDefault(); deleteUser();">
+    <form action="/users/delete" method="POST">
         <input type="hidden" name="_method" value="DELETE">
         <input type="text" name="userId" placeholder="ID de l'utilisateur" required>
         <button type="submit">Supprimer un utilisateur</button>
@@ -51,9 +51,11 @@
 
     <h2>Gestion des Réservations</h2>
     <form action="/reservations/create" method="POST">
-        <input type="text" name="catwayId" placeholder="ID du Catway" required>
-        <input type="text" name="userId" placeholder="ID de l'utilisateur" required>
-        <input type="date" name="reservationDate" required>
+        <input type="text" name="catwayNumber" placeholder="Nombre du Catway" required>
+        <input type="text" name="clientName" placeholder="Nom du client" required>
+        <input type="text" name="boatName" placeholder="Nom du bateau" required>
+        <input type="date" name="checkIn" required>
+        <input type="date" name="checkOut" required>
         <button type="submit">Enregistrer une réservation</button>
     </form>
     <form action="/reservations/delete" method="POST">
