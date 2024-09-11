@@ -67,4 +67,29 @@
 
     <a href="<%= apiDocumentationLink %>">Voir la documentation de l'API</a>
 </body>
+
+<script>
+    /* Methode "put" pour le formulaire "user/updates"*/
+    document.getElementById('updateForm').addEventListener('submit', async function(event) {
+        event.preventDefault();
+        
+        const userId = document.querySelector('input[name="userId"]').value;
+        const newName = document.querySelector('input[name="newName"]').value;
+        const newPassword = document.querySelector('input[name="newPassword"]').value;
+        
+        try {
+            const response = await fetch(`/users/update/${userId}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name: newName, password: newPassword })
+            });
+            const data = await response.json();
+            console.log(data);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+    </script>
 </html>
