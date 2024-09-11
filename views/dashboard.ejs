@@ -15,14 +15,13 @@
         <input type="password" name="password" placeholder="Mot de passe" required>
         <button type="submit">Créer un utilisateur</button>
     </form>
-    <form action="/users/update" method="POST">
-        <input type="hidden" name="_method" value="PUT">
+    <form id="updateForm">
         <input type="text" name="userId" placeholder="ID de l'utilisateur" required>
         <input type="text" name="newName" placeholder="Nouveau nom d'utilisateur">
         <input type="password" name="newPassword" placeholder="Nouveau mot de passe">
         <button type="submit">Modifier un utilisateur</button>
     </form>
-    <form action="/users/delete" method="POST">
+    <form action="/users/delete/ID" method="POST" onsubmit="event.preventDefault(); deleteUser();">
         <input type="hidden" name="_method" value="DELETE">
         <input type="text" name="userId" placeholder="ID de l'utilisateur" required>
         <button type="submit">Supprimer un utilisateur</button>
@@ -45,7 +44,7 @@
         <input type="text" name="catwayId" placeholder="ID du Catway" required>
         <button type="submit">Supprimer le Catway</button>
     </form>
-    <form action="/catways/details" method="GET">
+    <form action="/catways/details/<%= catwayId %>" method="GET">
         <input type="text" name="catwayId" placeholder="ID du Catway" required>
         <button type="submit">Afficher les détails du Catway</button>
     </form>
@@ -74,7 +73,7 @@
 </body>
 
 <script>
-    /* Methode "put" pour le formulaire "user/updates"
+    /* Methode "put" pour le formulaire "user/updates"*/
     document.getElementById('updateForm').addEventListener('submit', async function(event) {
         event.preventDefault();
         
@@ -97,7 +96,7 @@
         }
     });
 
-         Fonction permettant l'activation de delete pour user
+        /* Fonction permettant l'activation de delete pour user*/
     async function deleteUser() {
     const userId = document.querySelector('input[name="userId"]').value;
     const response = await fetch(`/users/delete/${userId}`, {
@@ -105,6 +104,6 @@
     });
     const data = await response.json();
     console.log(data);
-}*/
+}
     </script>
 </html>
