@@ -22,7 +22,7 @@
         <input type="password" name="newPassword" placeholder="Nouveau mot de passe">
         <button type="submit">Modifier un utilisateur</button>
     </form>
-    <form action="/users/delete/ID" method="POST">
+    <form action="/users/delete" method="POST">
         <input type="hidden" name="_method" value="DELETE">
         <input type="text" name="userId" placeholder="ID de l'utilisateur" required>
         <button type="submit">Supprimer un utilisateur</button>
