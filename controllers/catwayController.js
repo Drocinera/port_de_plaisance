@@ -21,7 +21,13 @@ exports.getCatwayById = async (req, res) => {
 
 exports.createCatway = async (req, res) => {
   try {
-    const newCatway = new Catway(req.body);
+    const newCatway = new Catway({
+      name: req.body.name,
+      catwayState: req.body.catwayState,
+      type: req.body.type,
+      catwayNumber: req.body.catwayNumber
+    });
+    
     const savedCatway = await newCatway.save();
     res.status(201).json(savedCatway);
   } catch (err) {
