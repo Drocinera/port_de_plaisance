@@ -19,7 +19,7 @@ router.get('/details/:id', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const catways = await Catway.find();
-        res.render('catway', { catways });
+        res.render('catways', { catways });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }

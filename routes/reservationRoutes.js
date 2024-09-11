@@ -17,7 +17,7 @@ router.get('/details/:id', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const reservations = await Reservation.find();
-        res.render('reservation', { reservations });
+        res.render('reservations', { reservations });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
