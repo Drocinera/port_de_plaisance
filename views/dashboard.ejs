@@ -21,7 +21,8 @@
         <input type="password" name="newPassword" placeholder="Nouveau mot de passe">
         <button type="submit">Modifier un utilisateur</button>
     </form>
-    <form action="/users/delete" method="POST">
+    <form action="/users/delete/ID" method="POST" onsubmit="event.preventDefault(); deleteUser();">
+        <input type="hidden" name="_method" value="DELETE">
         <input type="text" name="userId" placeholder="ID de l'utilisateur" required>
         <button type="submit">Supprimer un utilisateur</button>
     </form>
@@ -43,7 +44,7 @@
         <input type="text" name="catwayId" placeholder="ID du Catway" required>
         <button type="submit">Supprimer le Catway</button>
     </form>
-    <form action="/catways/details" method="GET">
+    <form action="/catways/details/<%= catwayId %>" method="GET">
         <input type="text" name="catwayId" placeholder="ID du Catway" required>
         <button type="submit">Afficher les détails du Catway</button>
     </form>
@@ -81,12 +82,12 @@
         const newPassword = document.querySelector('input[name="newPassword"]').value;
         
         try {
-            const response = await fetch(`/users/update/${userId}`, {
+            const response = await fetch(`/users/update`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name: newName, password: newPassword })
+            },
+                body: JSON.stringify({ id: userId, name: newName, password: newPassword })
             });
             const data = await response.json();
             console.log(data);
@@ -94,5 +95,15 @@
             console.error('Error:', error);
         }
     });
+
+        /* Fonction permettant l'activation de delete pour user*/
+    async function deleteUser() {
+    const userId = document.querySelector('input[name="userId"]').value;
+    const response = await fetch(`/users/delete/${userId}`, {
+        method: 'DELETE',
+    });
+    const data = await response.json();
+    console.log(data);
+}
     </script>
 </html>
