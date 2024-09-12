@@ -65,9 +65,9 @@ app.listen(PORT, () => {
   console.log(`Serveur lancé sur le port ${PORT}`);
 });
 
-/*app.post('/users/delete', async (req, res) => {
+app.post('/users/delete', async (req, res) => {
   try {
-    const userId = req.body.userId; // Récupère l'ID de l'utilisateur à partir du formulaire
+    const userId = req.body.userId;
     if (!userId) {
       return res.status(400).send('ID utilisateur requis');
     }
@@ -82,11 +82,11 @@ app.listen(PORT, () => {
       return res.status(404).send('Utilisateur non trouvé');
     }
 
-    res.redirect('/'); // Redirige vers le tableau de bord après la suppression
+    res.redirect('/');
   } catch (err) {
     console.error(err);
     res.status(500).send('Erreur lors de la suppression de l\'utilisateur');
   }
-});*/
+});
 
 /*my ip : 90.49.236.239/32*/
