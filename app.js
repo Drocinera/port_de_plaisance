@@ -82,7 +82,7 @@ app.post('/users/delete', async (req, res) => {
       return res.status(404).send('Utilisateur non trouvé');
     }
 
-    res.redirect('/dashboard'); // Redirige vers le tableau de bord après la suppression
+    res.redirect('/'); // Redirige vers le tableau de bord après la suppression
   } catch (err) {
     console.error(err);
     res.status(500).send('Erreur lors de la suppression de l\'utilisateur');
