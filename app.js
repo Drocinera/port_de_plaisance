@@ -65,7 +65,7 @@ app.listen(PORT, () => {
   console.log(`Serveur lancé sur le port ${PORT}`);
 });
 
-app.post('/users/delete', async (req, res) => {
+/*app.post('/users/delete', async (req, res) => {
   try {
     const userId = req.body.userId; // Récupère l'ID de l'utilisateur à partir du formulaire
     if (!userId) {
@@ -87,6 +87,6 @@ app.post('/users/delete', async (req, res) => {
     console.error(err);
     res.status(500).send('Erreur lors de la suppression de l\'utilisateur');
   }
-});
+});*/
 
 /*my ip : 90.49.236.239/32*/
