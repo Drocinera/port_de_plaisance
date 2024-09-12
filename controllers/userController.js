@@ -7,6 +7,7 @@ exports.createUser = async (req, res) => {
     const newUser = new User(req.body);
     const savedUser = await newUser.save();
     res.status(201).json(savedUser);
+    res.redirect('/');
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -61,7 +62,7 @@ exports.deleteUser = async (req, res) => {
       return res.status(404).send('Utilisateur non trouvé');
     }
 
-    res.redirect('/dashboard');
+    res.redirect('/');
   } catch (err) {
     console.error(err);
     res.status(500).send('Erreur lors de la suppression de l\'utilisateur');
