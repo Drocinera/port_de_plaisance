@@ -34,11 +34,15 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   try {
       const userId = req.body.userid;
-      const deletedUser = await User.findByIdAndDelete(userId);
-      if (!deletedUser) return res.status(404).json({ message: "Utilisateur non trouvé" });
+       if (!userId) {
+      return res.status(400).send('ID utilisateur requis');
+    }
+      await User.findByIdAndDelete(userId);
+      
       res.redirect('/dashboard')
       res.json({ message: "Utilisateur supprimé" });
-  } catch (err) {
-      res.status(500).json({ error: err.message });
-  }
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Erreur lors de la suppression de l\'utilisateur');
+    }
 };

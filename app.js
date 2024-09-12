@@ -27,6 +27,8 @@ mongoose.connect(process.env.MONGO_URI)
 // Routes
 const catwayRoutes = require('./routes/catwayRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
+const authRoutes = require('./routes/authRoutes'); 
+const userRoutes = require('./routes/userRoutes');
 
 // Page d'accueil protégé
 app.get('/', authMiddleware, (req, res) => {
@@ -51,15 +53,11 @@ app.get('/login', (req, res) => {
   });
 });
 
+app.use(authRoutes);
 // Routes protégées pour Catways et Réservations
 app.use('/catways', authMiddleware, catwayRoutes);
 app.use('/reservations', authMiddleware, reservationRoutes);
-
-const authRoutes = require('./routes/authRoutes'); 
-app.use(authRoutes);
-
-const userRoutes = require('./routes/userRoutes');
-app.use('/users', userRoutes);
+app.use('/users',authMiddleware, userRoutes);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
