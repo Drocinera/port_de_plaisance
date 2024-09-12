@@ -33,9 +33,8 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-      const userId = req.params.id;
+      const userId = req.body.userid;
       const deletedUser = await User.findByIdAndDelete(userId);
-      if (deletedUser) return res.status(201).json({ message: "UTilisateur supprimé" });
       if (!deletedUser) return res.status(404).json({ message: "Utilisateur non trouvé" });
       res.redirect('/dashboard')
       res.json({ message: "Utilisateur supprimé" });
