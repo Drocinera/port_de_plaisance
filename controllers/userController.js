@@ -33,16 +33,24 @@ exports.updateUser = async (req, res) => {
 
 exports.deleteUser = async (req, res) => {
   try {
-      const userId = req.body.userid;
-       if (!userId) {
+    const userId = req.body.userId;
+    if (!userId) {
       return res.status(400).send('ID utilisateur requis');
     }
-      await User.findByIdAndDelete(userId);
-      
-      res.redirect('/dashboard')
-      res.json({ message: "Utilisateur supprimé" });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Erreur lors de la suppression de l\'utilisateur');
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).send('ID utilisateur invalide');
     }
+
+    const user = await User.findByIdAndDelete(userId);
+
+    if (!user) {
+      return res.status(404).send('Utilisateur non trouvé');
+    }
+
+    res.redirect('/dashboard');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Erreur lors de la suppression de l\'utilisateur');
+  }
 };

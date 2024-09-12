@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const authMiddleware = require('./middlewares/authMiddleware');
+const User = require('./models/User');
 
 const app = express();
 
@@ -71,8 +72,15 @@ app.post('/users/delete', async (req, res) => {
       return res.status(400).send('ID utilisateur requis');
     }
 
-    // Suppression de l'utilisateur dans la base de données MongoDB
-    await User.findByIdAndDelete(userId);
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).send('ID utilisateur invalide');
+    }
+
+    const user = await User.findByIdAndDelete(userId);
+    
+    if (!user) {
+      return res.status(404).send('Utilisateur non trouvé');
+    }
 
     res.redirect('/dashboard'); // Redirige vers le tableau de bord après la suppression
   } catch (err) {
