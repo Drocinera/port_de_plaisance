@@ -64,5 +64,21 @@ app.listen(PORT, () => {
   console.log(`Serveur lancé sur le port ${PORT}`);
 });
 
+app.post('/users/delete', async (req, res) => {
+  try {
+    const userId = req.body.userId; // Récupère l'ID de l'utilisateur à partir du formulaire
+    if (!userId) {
+      return res.status(400).send('ID utilisateur requis');
+    }
+
+    // Suppression de l'utilisateur dans la base de données MongoDB
+    await User.findByIdAndDelete(userId);
+
+    res.redirect('/dashboard'); // Redirige vers le tableau de bord après la suppression
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Erreur lors de la suppression de l\'utilisateur');
+  }
+});
 
 /*my ip : 90.49.236.239/32*/
