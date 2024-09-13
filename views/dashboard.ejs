@@ -37,11 +37,13 @@
         <button type="submit">Créer un Catway</button>
     </form>
     <form action="/catways/update" method="POST">
+        <input type="hidden" name="_method" value="PATCH">
         <input type="text" name="catwayId" placeholder="ID du Catway" required>
         <input type="text" name="newDescription" placeholder="Nouvelle description">
         <button type="submit">Modifier le Catway</button>
     </form>
     <form action="/catways/delete" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
         <input type="text" name="catwayId" placeholder="ID du Catway" required>
         <button type="submit">Supprimer le Catway</button>
     </form>
@@ -60,6 +62,7 @@
         <button type="submit">Enregistrer une réservation</button>
     </form>
     <form action="/reservations/delete" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
         <input type="text" name="reservationId" placeholder="ID de la réservation" required>
         <button type="submit">Supprimer une réservation</button>
     </form>

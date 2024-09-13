@@ -79,5 +79,3 @@ exports.deleteUser = async (req, res) => {
     res.status(500).send('Erreur lors de la suppression de l\'utilisateur');
   }
 };
-
-//Si ca marche toujours pas, faire comme delete et mettre en app.//

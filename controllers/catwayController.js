@@ -37,30 +37,53 @@ exports.createCatway = async (req, res) => {
 
 exports.updateCatway = async (req, res) => {
   try {
-    const updatedCatway = await Catway.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    if (!updatedCatway) return res.status(404).json({ message: "Catway non trouvé" });
-    res.json(updatedCatway);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
-};
+    const { catwayId, newDescription} = req.body;
 
-exports.partialUpdateCatway = async (req, res) => {
-  try {
-    const updatedCatway = await Catway.findByIdAndUpdate(req.params.id, { $set: req.body }, { new: true });
-    if (!updatedCatway) return res.status(404).json({ message: "Catway non trouvé" });
-    res.json(updatedCatway);
+    if (!catwayId) {
+      return res.status(400).send('ID Catway requis');
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(catwayId)) {
+      return res.status(400).json({ error: 'ID Catway non valide' });
+    }
+
+    const updatedData = {};
+    if (newDescription) updatedData.catwayState = newDescription;
+
+    const updatedCatway = await Catway.findByIdAndUpdate(catwayId, updatedData, { new: true });
+
+    if (!updatedCatway) {
+      return res.status(404).json({ error: 'Catway non trouvé' });
+    }
+
+    res.status(200).json(updatedCatway);
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error(err);
+    res.status(500).json({ error: 'Erreur lors de la mise à jour du Catway' });
   }
 };
 
 exports.deleteCatway = async (req, res) => {
   try {
-    const deletedCatway = await Catway.findByIdAndDelete(req.params.id);
-    if (!deletedCatway) return res.status(404).json({ message: "Catway non trouvé" });
-    res.json({ message: "Catway supprimé" });
+    const catwayId = req.body.catwayId;
+
+    if (!catwayId) {
+      return res.status(400).send('ID catway requis');
+    }
+
+    if (!mongoose.Types.ObjectId.isValid(catwayId)) {
+      return res.status(400).send('ID catway invalide');
+    }
+
+    const catway = await Catway.findByIdAndDelete(catwayId);
+
+    if (!catway) {
+      return res.status(404).send('catway non trouvé');
+    }
+
+    res.redirect('/');
   } catch (err) {
-    res.status(500).json({ error: err.message });
+    console.error(err);
+    res.status(500).send('Erreur lors de la suppression du catway');
   }
 };

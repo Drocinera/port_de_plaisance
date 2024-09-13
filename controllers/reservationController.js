@@ -41,10 +41,25 @@ exports.createReservation = async (req, res) => {
 
 exports.deleteReservation = async (req, res) => {
     try {
-        const deletedReservation = await Reservation.findByIdAndDelete(req.params.id);
-        if (!deletedReservation) return res.status(404).json({ message: "Réservation non trouvée" });
-        res.json({ message: "Réservation supprimée" });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-};
+        const reservationId = req.body.reservationId;
+    
+        if (!reservationId) {
+          return res.status(400).send('ID reservation requis');
+        }
+    
+        if (!mongoose.Types.ObjectId.isValid(reservationId)) {
+          return res.status(400).send('ID reservation invalide');
+        }
+    
+        const reservation = await Reservation.findByIdAndDelete(reservationId);
+    
+        if (!reservation) {
+          return res.status(404).send('Reservation non trouvé');
+        }
+    
+        res.redirect('/');
+      } catch (err) {
+        console.error(err);
+        res.status(500).send('Erreur lors de la suppression de la reservation');
+      }
+    };
