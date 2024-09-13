@@ -3,22 +3,22 @@ const mongoose = require('mongoose');
 
 exports.getAllReservations = async (req, res) => {
     try {
-        const reservations = await Reservation.find();
-        res.json(reservations);
-    } catch (err) {
+        const reservation = await Reservation.find();
+        res.render('reservationsList', { reservation });
+      } catch (err) {
         res.status(500).json({ error: err.message });
-    }
-};
+      }
+    };
 
 exports.getReservationById = async (req, res) => {
     try {
         const reservation = await Reservation.findById(req.params.id);
-        if (!reservation) return res.status(404).json({ message: "Réservation non trouvée" });
-        res.json(reservation);
-    } catch (err) {
+        if (!reservation) return res.render('reservationsList', { reservation: null });
+        res.render('reservationDetails', { reservation });
+      } catch (err) {
         res.status(500).json({ error: err.message });
-    }
-};
+      }
+    };
 
 exports.getReservationDetails = async (req, res) => {
     try {
