@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 exports.getAllCatways = async (req, res) => {
   try {
     const catways = await Catway.find();
-    res.json(catways);
+    res.render('catwaysList', { catways });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -13,13 +13,12 @@ exports.getAllCatways = async (req, res) => {
 exports.getCatwayById = async (req, res) => {
   try {
     const catway = await Catway.findById(req.params.id);
-    if (!catway) return res.status(404).json({ message: "Catway non trouvé" });
-    res.json(catway);
+    if (!catway) return res.render('catwaydetail', { catway: null });
+    res.render('catwayDetails', { catway });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
-
 exports.createCatway = async (req, res) => {
   try {
     const newCatway = new Catway({
