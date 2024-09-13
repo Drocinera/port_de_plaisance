@@ -24,7 +24,11 @@ exports.getUserById = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    const { userId, newName, newPassword } = req.query;
+    const { userId, newName, newPassword } = req.body;
+
+    if (!userId) {
+      return res.status(400).send('ID utilisateur requis');
+    }
 
     if (!mongoose.Types.ObjectId.isValid(userId)) {
       return res.status(400).json({ error: 'ID utilisateur non valide' });
@@ -53,6 +57,7 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   try {
     const userId = req.body.userId;
+    
     if (!userId) {
       return res.status(400).send('ID utilisateur requis');
     }
