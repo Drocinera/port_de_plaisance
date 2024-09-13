@@ -89,4 +89,32 @@ app.post('/users/delete', async (req, res) => {
   }
 });
 
+app.get('/users/update', async (req, res) => {
+  try {
+    const { userId, newName, newPassword } = req.query;
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.status(400).json({ error: 'ID utilisateur non valide' });
+    }
+
+    const updatedData = {};
+    if (newName) updatedData.name = newName;
+    if (newPassword) {
+  const salt = await bcrypt.genSalt(10);
+  updatedData.password = await bcrypt.hash(newPassword, salt);
+}
+
+    const updatedUser = await User.findByIdAndUpdate(userId, updatedData, { new: true });
+
+    if (!updatedUser) {
+      return res.status(404).json({ error: 'Utilisateur non trouvé' });
+    }
+
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Erreur lors de la mise à jour de l\'utilisateur' });
+  }
+});
+
 /*my ip : 90.49.236.239/32*/
