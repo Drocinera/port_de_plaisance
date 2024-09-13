@@ -23,7 +23,7 @@ exports.getUserById = async (req, res) => {
   }
 };
 
-/*exports.updateUser = async (req, res) => {
+exports.updateUser = async (req, res) => {
   try {
     const { userId, newName, newPassword } = req.query;
 
@@ -49,7 +49,7 @@ exports.getUserById = async (req, res) => {
     console.error(err);
     res.status(500).json({ error: 'Erreur lors de la mise à jour de l\'utilisateur' });
   }
-};*/
+};
 
 exports.deleteUser = async (req, res) => {
   try {

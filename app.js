@@ -65,7 +65,7 @@ app.listen(PORT, () => {
   console.log(`Serveur lancé sur le port ${PORT}`);
 });
 
-app.post('/users/delete', async (req, res) => {
+/*app.post('/users/delete', async (req, res) => {
   try {
     const userId = req.body.userId;
     if (!userId) {
@@ -87,9 +87,9 @@ app.post('/users/delete', async (req, res) => {
     console.error(err);
     res.status(500).send('Erreur lors de la suppression de l\'utilisateur');
   }
-});
+});*/
 
-app.get('/users/update', async (req, res) => {
+/*app.get('/users/update', async (req, res) => {
   try {
     const { userId, newName, newPassword } = req.query;
 
