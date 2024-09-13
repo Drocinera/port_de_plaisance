@@ -25,13 +25,19 @@ exports.getUserById = async (req, res) => {
 
 exports.updateUser = async (req, res) => {
   try {
-    const userId = req.params.id;
+    const { userId, newName, newPassword } = req.query;
 
     if (!mongoose.Types.ObjectId.isValid(userId)) {
       return res.status(400).json({ error: 'ID utilisateur non valide' });
     }
 
-    const updatedData = req.body;
+    const updatedData = {};
+    if (newName) updatedData.name = newName;
+    if (newPassword) {
+  const salt = await bcrypt.genSalt(10);
+  updatedData.password = await bcrypt.hash(newPassword, salt);
+}
+
     const updatedUser = await User.findByIdAndUpdate(userId, updatedData, { new: true });
 
     if (!updatedUser) {
@@ -68,3 +74,5 @@ exports.deleteUser = async (req, res) => {
     res.status(500).send('Erreur lors de la suppression de l\'utilisateur');
   }
 };
+
+//Si ca marche toujours pas, faire comme delete et mettre en app.//
