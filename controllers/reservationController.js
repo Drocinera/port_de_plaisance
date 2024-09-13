@@ -1,4 +1,5 @@
 const Reservation = require('../models/Reservation');
+const mongoose = require('mongoose');
 
 exports.getAllReservations = async (req, res) => {
     try {

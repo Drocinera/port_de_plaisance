@@ -1,4 +1,5 @@
 const Catway = require('../models/Catway');
+const mongoose = require('mongoose');
 
 exports.getAllCatways = async (req, res) => {
   try {
