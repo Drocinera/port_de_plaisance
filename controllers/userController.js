@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 
 
@@ -57,7 +58,7 @@ exports.updateUser = async (req, res) => {
 exports.deleteUser = async (req, res) => {
   try {
     const userId = req.body.userId;
-    
+
     if (!userId) {
       return res.status(400).send('ID utilisateur requis');
     }
