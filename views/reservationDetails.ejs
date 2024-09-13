@@ -8,13 +8,13 @@
 <body>
     <h1>Détails de la Réservation</h1>
     
-    <% if (reservation) { %>
-        <p><strong>ID :</strong> <%= reservation._id %></p>
-        <p><strong>Numéro du Catway :</strong> <%= reservation.catwayNumber %></p>
-        <p><strong>Nom du Client :</strong> <%= reservation.clientName %></p>
-        <p><strong>Nom du Bateau :</strong> <%= reservation.boatName %></p>
-        <p><strong>Date d'Arrivée :</strong> <%= reservation.checkIn.toDateString() %></p>
-        <p><strong>Date de Départ :</strong> <%= reservation.checkOut.toDateString() %></p>
+    <% if (Reservations) { %>
+        <p><strong>ID :</strong> <%= Reservations._id %></p>
+        <p><strong>Numéro du Catway :</strong> <%= reservations.catwayNumber %></p>
+        <p><strong>Nom du Client :</strong> <%= reservations.clientName %></p>
+        <p><strong>Nom du Bateau :</strong> <%= reservations.boatName %></p>
+        <p><strong>Date d'Arrivée :</strong> <%= reservations.checkIn.toDateString() %></p>
+        <p><strong>Date de Départ :</strong> <%= reservations.checkOut.toDateString() %></p>
     <% } else { %>
         <p>Réservation non trouvée.</p>
     <% } %>

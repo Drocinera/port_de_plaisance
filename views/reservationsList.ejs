@@ -7,21 +7,22 @@
 </head>
 <body>
     <h1>Liste des Réservations</h1>
-    
+
     <% if (reservations.length > 0) { %>
         <ul>
-            <% reservations.forEach(reservation => { %>
+            <% reservations.forEach(reservations => { %>
                 <li>
-                    <a href="/reservations/details/<%= reservation._id %>">
-                        Réservation <%= reservation._id %> - Catway: <%= reservation.catwayNumber %> - Client: <%= reservation.clientName %> - Bateau: <%= reservation.boatName %>
+                    <a href="/reservations/details/<%= reservations._id %>">
+                        Reservations <%= reservations.catwayNumber %> - Nom du client: <%= reservations.clientName %> - Nom du bateau: <%= reservations.boatName %> 
+                        - Début réservation: <%= reservations.checkIn %> - Fin réservation: <%= reservations.checkOut %>
                     </a>
                 </li>
             <% }) %>
         </ul>
     <% } else { %>
-        <p>Aucune réservation trouvée.</p>
+        <p>Aucune réservations trouvé.</p>
     <% } %>
 
-    <a href="/dashboard">Retour au tableau de bord</a>
+    <a href="/">Retour au tableau de bord</a>
 </body>
 </html>
