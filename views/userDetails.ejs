@@ -10,9 +10,8 @@
 
     <% if (user) { %>
         <p><strong>ID :</strong> <%= user._id %></p>
-        <p><strong>Nom d'utilisateur :</strong> <%= user.username %></p>
+        <p><strong>Nom d'utilisateur :</strong> <%= user.name %></p>
         <p><strong>Email :</strong> <%= user.email %></p>
-        <p><strong>Rôle :</strong> <%= user.role %></p>
     <% } else { %>
         <p>Utilisateur non trouvé.</p>
     <% } %>
