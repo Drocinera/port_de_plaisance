@@ -16,8 +16,8 @@ exports.createUser = async (req, res) => {
 exports.getUserById = async (req, res) => {
   try {
     const user = await User.findById(req.params.id);
-    if (!user) return res.status(404).json({ message: "Utilisateur non trouvé" });
-    res.json(user);
+    if (!user) return res.render('userDetails', { user: null });
+    res.render('userDetails', { user });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -79,3 +79,12 @@ exports.deleteUser = async (req, res) => {
     res.status(500).send('Erreur lors de la suppression de l\'utilisateur');
   }
 };
+
+exports.getAllUser = async (req, res) => {
+  try {
+      const users = await User.find();
+      res.render('usersList', { users });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  };

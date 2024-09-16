@@ -12,7 +12,7 @@ exports.getAllReservations = async (req, res) => {
 
 exports.getReservationById = async (req, res) => {
     try {
-        const reservation = await Reservation.findById(req.query.reservationId);
+        const reservation = await Reservation.findById(req.params.id);
         if (!reservation) return res.render('reservationDetails', { reservation: null });
         res.render('reservationDetails', { reservation });
       } catch (err) {
