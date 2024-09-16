@@ -8,9 +8,9 @@
 <body>
     <h1>Liste des Réservations</h1>
 
-    <% if (reservations.length > 0) { %> 
+    <% if (reservation.length > 0) { %> 
         <ul>
-            <% reservations.forEach(reservation => { %> 
+            <% reservation.forEach(reservation => { %> 
                 <li>
                     <a href="/reservations/details/<%= reservation._id %>">
                         Réservation du Catway <%= reservation.catwayNumber %> - Nom du client: <%= reservation.clientName %> - Nom du bateau: <%= reservation.boatName %>
