@@ -1,10 +1,11 @@
-import chai from'chai';
-import chaiHttp from'chai-http';
-import app from'../app';
-import Reservation from'../models/Reservation';
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const app = require('../app');
+const Reservation = require('../models/Reservation');
 
-chai.should();
 chai.use(chaiHttp);
+const { expect } = chai;
+
 
 describe('Reservations', () => {
     // 6. Prendre la réservation d’un catway
@@ -21,9 +22,9 @@ describe('Reservations', () => {
             .post('/reservations/create')
             .send(newReservation)
             .end((err, res) => {
-                res.should.have.status(201);
-                res.body.should.be.a('object');
-                res.body.should.have.property('catwayNumber').eql(123);
+                expect(res).should.have.status(201);
+                expect(res.body).should.be.a('object');
+                expect(res.body).should.have.property('catwayNumber').eql(123);
                 done();
             });
     });
@@ -41,7 +42,7 @@ describe('Reservations', () => {
             chai.request(app)
                 .post(`/reservations/delete/${reservation._id}`)
                 .end((err, res) => {
-                    res.should.have.status(200);
+                    expect(res).should.have.status(200);
                     done();
                 });
         });
@@ -52,8 +53,8 @@ describe('Reservations', () => {
         chai.request(app)
             .get('/reservations/list')
             .end((err, res) => {
-                res.should.have.status(200);
-                res.body.should.be.a('array');
+                expect(res).should.have.status(200);
+                expect(res.body).should.be.a('array');
                 done();
             });
     });
@@ -71,9 +72,9 @@ describe('Reservations', () => {
             chai.request(app)
                 .get(`/reservations/details/${reservation._id}`)
                 .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('catwayNumber').eql(123);
+                    expect(res).should.have.status(200);
+                    expect(res.body).should.be.a('object');
+                    expect(res.body).should.have.property('catwayNumber').eql(123);
                     done();
                 });
         });

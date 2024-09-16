@@ -1,10 +1,11 @@
-import chai from'chai';
-import chaiHttp from'chai-http';
-import app from'../app';
-import Catway from'../models/Catway';
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const app = require('../app');
+const Catway = require('../models/Catway');
 
-chai.should();
 chai.use(chaiHttp);
+const { expect } = chai;
+
 
 describe('Catways', () => {
     
@@ -20,9 +21,9 @@ describe('Catways', () => {
             .post('/catways/create')
             .send(newCatway)
             .end((err, res) => {
-                res.should.have.status(201);
-                res.body.should.be.a('object');
-                res.body.should.have.property('catwayNumber').eql(123);
+                expect(res).should.have.status(201);
+                expect(res.body).should.be.a('object');
+                expect(res.body).should.have.property('catwayNumber').eql(123);
                 done();
             });
     });
@@ -32,8 +33,8 @@ describe('Catways', () => {
         chai.request(app)
             .get('/catways/list')
             .end((err, res) => {
-                res.should.have.status(200);
-                res.body.should.be.a('array');
+                expect(res).should.have.status(200);
+                expect(res.body).should.be.a('array');
                 done();
             });
     });
@@ -45,9 +46,9 @@ describe('Catways', () => {
             chai.request(app)
                 .get(`/catways/details/${catway._id}`)
                 .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('catwayNumber').eql(123);
+                    expect(res).should.have.status(200);
+                    expect(res.body).should.be.a('object');
+                    expect(res.body).should.have.property('catwayNumber').eql(123);
                     done();
                 });
         });
@@ -61,9 +62,9 @@ describe('Catways', () => {
                 .post(`/catways/update/${catway._id}`)
                 .send({ catwayState: 'Réservé' })
                 .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
-                    res.body.should.have.property('catwayState').eql('Réservé');
+                    expect(res).should.have.status(200);
+                    expect(res.body).should.be.a('object');
+                    expect(res.body).should.have.property('catwayState').eql('Réservé');
                     done();
                 });
         });
@@ -76,8 +77,8 @@ describe('Catways', () => {
             chai.request(app)
                 .post(`/catways/delete/${catway._id}`)
                 .end((err, res) => {
-                    res.should.have.status(200);
-                    res.body.should.be.a('object');
+                    expect(res).should.have.status(200);
+                    expect(res.body).should.be.a('object');
                     done();
                 });
         });
