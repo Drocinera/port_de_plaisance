@@ -12,7 +12,7 @@ exports.getAllCatways = async (req, res) => {
 
 exports.getCatwayById = async (req, res) => {
   try {
-    const catway = await Catway.findById(req.params.id);
+    const catway = await Catway.findById(req.query.reservationId);
     if (!catway) return res.render('catwayDetails', { catways: null });
     res.render('catwayDetails', { catway });
   } catch (err) {
