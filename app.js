@@ -35,15 +35,6 @@ const userRoutes = require('./routes/userRoutes');
 app.get('/', authMiddleware, (req, res) => {
   res.render('dashboard', {
     title: 'Port de Plaisance',
-    apiDocumentationLink: '/documentation'
-  });
-});
-
-// Route pour la documentation
-app.get('/documentation', (req, res) => {
-  res.render('documentation', {
-    title: 'Documentation de l\'API',
-    apiDetails: 'Voici la documentation de l\'API...'
   });
 });
 
@@ -59,6 +50,7 @@ app.use(authRoutes);
 app.use('/catways', authMiddleware, catwayRoutes);
 app.use('/reservations', authMiddleware, reservationRoutes);
 app.use('/users',authMiddleware, userRoutes);
+app.use('/docs', express.static('docs'));
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
