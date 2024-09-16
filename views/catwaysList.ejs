@@ -13,7 +13,10 @@
             <% catways.forEach(catways => { %>
                 <li>
                     <a href="/catways/details/<%= catways._id %>">
-                        Catway <%= catways.catwayNumber %> - Type: <%= catways.type %> - État: <%= catways.catwayState %>
+                        <p><strong>ID:</strong> <%= catways._id %></p> 
+                        <p><strong>>Catway:</strong> <%= catways.catwayNumber %></p>
+                        <p><strong>Type:</strong> <%= catways.type %></p>
+                        <p><strong>État:</strong> <%= catways.catwayState %></p>
                     </a>
                 </li>
             <% }) %>
