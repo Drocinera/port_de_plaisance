@@ -18,9 +18,6 @@ exports.signup = async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-
-  res.redirect('/login');
-  
 };
 
 exports.login = async (req, res) => {
