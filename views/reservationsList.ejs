@@ -12,14 +12,12 @@
         <ul>
             <% reservation.forEach(reservation => { %> 
                 <li>
-                    <a href="/reservations/details/<%= reservation._id %>">
                         <p><strong>ID:</strong> <%= reservation._id %></p>
                         <p><strong>Réservation du Catway:</strong> <%= reservation.catwayNumber %></p>
                         <p><strong>Nom du client:</strong> <%= reservation.clientName %></p>
                         <p><strong>Nom du bateau:</strong> <%= reservation.boatName %></p>
                         <p><strong>Début réservation:</strong> <%= reservation.checkIn.toDateString() %></p>
                         <p><strong>Fin réservation:</strong> <%= reservation.checkOut.toDateString() %></p>
-                    </a>
                 </li>
             <% }) %>
         </ul>
