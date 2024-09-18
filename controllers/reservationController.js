@@ -12,23 +12,13 @@ exports.getAllReservations = async (req, res) => {
 
 exports.getReservationById = async (req, res) => {
     try {
-        const reservation = await Reservation.findById(req.params.id);
+        const reservation = await Reservation.findById(req.body.id);
         if (!reservation) return res.render('reservationDetails', { reservation: null });
         res.render('reservationDetails', { reservation });
       } catch (err) {
         res.status(500).json({ error: err.message });
       }
     };
-
-/*exports.getReservationDetails = async (req, res) => {
-    try {
-        const reservationDetails = await Reservation.findById(req.params.id);
-        if (!reservationDetails) return res.status(404).json({ message: "Réservation non trouvée" });
-        res.json(reservationDetails);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-};*/
 
 exports.createReservation = async (req, res) => {
     try {
