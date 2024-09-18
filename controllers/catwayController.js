@@ -40,13 +40,15 @@ exports.getAllCatways = async (req, res) => {
 
 exports.getCatwayById = async (req, res) => {
   try {
-    const catway = await Catway.findById(req.params.id);
+    const catwayId = req.query.id;
+    const catway = await Catway.findById(catwayId);
     if (!catway) return res.render('catwayDetails', { catways: null });
     res.render('catwayDetails', { catways: catway });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
+
 exports.createCatway = async (req, res) => {
   try {
     const newCatway = new Catway({
