@@ -8,11 +8,11 @@
 <body>
     <h1>Détails du Catway</h1>
     
-    <% if (catways) { %>
-        <p><strong>ID :</strong> <%= catways._id %></p>
-        <p><strong>Numéro :</strong> <%= catways.catwayNumber %></p>
-        <p><strong>Type :</strong> <%= catways.type %></p>
-        <p><strong>État :</strong> <%= catways.catwayState %></p>
+    <% if (catway) { %>
+        <p><strong>ID :</strong> <%= catway._id %></p>
+        <p><strong>Numéro :</strong> <%= catway.catwayNumber %></p>
+        <p><strong>Type :</strong> <%= catway.type %></p>
+        <p><strong>État :</strong> <%= catway.catwayState %></p>
     <% } else { %>
         <p>Catway non trouvé.</p>
     <% } %>
