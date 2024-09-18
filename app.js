@@ -46,7 +46,7 @@ app.get('/login', (req, res) => {
 });
 
 app.use(authRoutes);
-// Routes protégées pour Catways et Réservations
+// Routes protégées pour Catways, Réservations, utilisateurs et documents
 app.use('/catways', authMiddleware, catwayRoutes);
 app.use('/reservations', authMiddleware, reservationRoutes);
 app.use('/users',authMiddleware, userRoutes);
