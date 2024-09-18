@@ -32,7 +32,7 @@ router.delete('/delete', CatwayController.deleteCatway);
  * @returns {Error} 500 - Erreur serveur
  */
 
-router.get('/details/:id',CatwayController.getCatwayById);
+router.get('/details',CatwayController.getCatwayById);
 
 /**
  * Récupérer la liste de tous les catways.
