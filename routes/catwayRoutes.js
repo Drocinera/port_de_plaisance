@@ -19,8 +19,8 @@ const CatwayController = require('../controllers/catwayController.js');
  */
 
 router.post('/create', CatwayController.createCatway);
-router.post('/update', CatwayController.updateCatway);
-router.post('/delete', CatwayController.deleteCatway);
+router.patch('/update', CatwayController.updateCatway);
+router.delete('/delete', CatwayController.deleteCatway);
 
 /**
  * Récupérer les détails d'un catway par ID.

@@ -15,8 +15,7 @@
         <input type="password" name="password" placeholder="Mot de passe" required>
         <button type="submit">Créer un utilisateur</button>
     </form>
-    <form action="/users/update" method="POST">
-        <input type="hidden" name="_method" value="PUT">
+    <form action="/users/update?_method=PATCH" method="POST">
         <input type="text" name="userId" placeholder="ID de l'utilisateur" required>
         <input type="text" name="newName" placeholder="Nouveau nom d'utilisateur">
         <input type="password" name="newPassword" placeholder="Nouveau mot de passe">
@@ -35,14 +34,13 @@
         <input type="number" name="catwayNumber" placeholder="Numéro du Catway" required>
         <button type="submit">Créer un Catway</button>
     </form>
-    <form action="/catways/update" method="POST">
+    <form action="/catways/update?_method=PATCH" method="POST">
         <input type="hidden" name="_method" value="PATCH">
         <input type="text" name="catwayId" placeholder="ID du Catway" required>
         <input type="text" name="newDescription" placeholder="Nouvelle description">
         <button type="submit">Modifier le Catway</button>
     </form>
-    <form action="/catways/delete" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
+    <form action="/catways/delete?_method=DELETE" method="POST">
         <input type="text" name="catwayId" placeholder="ID du Catway" required>
         <button type="submit">Supprimer le Catway</button>
     </form>
@@ -60,8 +58,7 @@
         <input type="date" name="checkOut" required>
         <button type="submit">Enregistrer une réservation</button>
     </form>
-    <form action="/reservations/delete" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
+    <form action="/reservations/delete?_method=DELETE" method="POST">
         <input type="text" name="reservationId" placeholder="ID de la réservation" required>
         <button type="submit">Supprimer une réservation</button>
     </form>
