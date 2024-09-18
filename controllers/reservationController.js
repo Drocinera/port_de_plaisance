@@ -22,7 +22,7 @@ exports.getReservationById = async (req, res) => {
 
 exports.getReservationDetails = async (req, res) => {
     try {
-        const reservationDetails = await Reservation.findById(req.query.id);
+        const reservationDetails = await Reservation.findById(req.params.id);
         if (!reservationDetails) return res.status(404).json({ message: "Réservation non trouvée" });
         res.json(reservationDetails);
     } catch (err) {
