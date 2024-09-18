@@ -20,7 +20,7 @@ exports.getReservationById = async (req, res) => {
       }
     };
 
-exports.getReservationDetails = async (req, res) => {
+/*exports.getReservationDetails = async (req, res) => {
     try {
         const reservationDetails = await Reservation.findById(req.params.id);
         if (!reservationDetails) return res.status(404).json({ message: "Réservation non trouvée" });
@@ -28,7 +28,7 @@ exports.getReservationDetails = async (req, res) => {
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
-};
+};*/
 
 exports.createReservation = async (req, res) => {
     try {
