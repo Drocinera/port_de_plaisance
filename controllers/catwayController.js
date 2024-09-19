@@ -40,7 +40,7 @@ exports.getAllCatways = async (req, res) => {
 
 exports.getCatwayById = async (req, res) => {
   try {
-    const catwayId = req.query.id;
+    const catwayId = req.query.catwayId;
     const catway = await Catway.findById(catwayId);
     if (!catway) return res.render('catwayDetails', { catways: null });
     res.render('catwayDetails', { catways: catway });
